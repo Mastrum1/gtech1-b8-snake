@@ -19,6 +19,7 @@ class Game{
         void render();
         void update();
         void clean();
+        SDL_Renderer* getRenderer() {return renderer;}
 
         bool running() {return isRunning;}
     private:

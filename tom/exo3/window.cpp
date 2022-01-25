@@ -10,9 +10,10 @@ Game::~Game()
 
 int Game::init(const char* title, int xpos, int ypos, int width, int height)
 {       
-       
+        int SDL_Init(SDL_INIT_EVERYTHING);
         window = SDL_CreateWindow(title, xpos, ypos, width , height , SDL_WINDOW_RESIZABLE);  
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+       
         if(window == NULL)//gestion des erreurs
             {
                 std::cout << "Erreur" << std::endl;
@@ -29,7 +30,8 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 void Game::update()
 {
-
+        
+        SDL_RenderPresent(renderer);
 }
 
 
