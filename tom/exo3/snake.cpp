@@ -11,9 +11,16 @@
 
 
 Game window;
+int game = true;
+
+void collision(int xpos)
+{
+    if (xpos == 750){game = false;}
+}
 
 int main(void){
     
+    int direction = 0;
     window.init("Test",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,800,500);
 
     
@@ -22,48 +29,54 @@ int main(void){
     rectangle.createRect(window.getRenderer(),50,50);
 
 
-    while (window.running() == true)
+    while (game == true)
     {
         
         const Uint8 *state = SDL_GetKeyboardState(NULL);
         if (state[SDL_SCANCODE_W]) 
-            {
-                SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
-                SDL_RenderClear(window.getRenderer());
-                SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
-                rectangle.move(0,-1);
-                rectangle.createRect(window.getRenderer(),50,50);
-                printf("Key pressed\n");
-            }
+        {
+            direction = 0;
+        }
         if (state[SDL_SCANCODE_S]) 
-            {
-                SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
-                SDL_RenderClear(window.getRenderer());
-                SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
-                rectangle.move(0,1);
-                rectangle.createRect(window.getRenderer(),50,50);
-                printf("Key pressed\n");
-            }            
+        {
+            direction = 1;
+        }
         if (state[SDL_SCANCODE_D]) 
-            {
-                SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
-                SDL_RenderClear(window.getRenderer());
-                SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
-                rectangle.move(1,0);
-                rectangle.createRect(window.getRenderer(),50,50);
-                printf("Key pressed\n");
-            } 
-            if (state[SDL_SCANCODE_A]) 
-            {
-                SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
-                SDL_RenderClear(window.getRenderer());
-                SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
-                rectangle.move(-1,0);
-                rectangle.createRect(window.getRenderer(),50,50);
-                printf("Key pressed\n");
-            } 
-        window.update();
+        {
+            direction = 2;
+        }
+        if (state[SDL_SCANCODE_A]) 
+        {
+            direction = 3;
+        }
 
+        SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
+        SDL_RenderClear(window.getRenderer());
+        SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
+        switch (direction){
+            case 0:
+                rectangle.move(direction);
+                break;
+            case 1:
+                rectangle.move(direction);
+                break;
+            case 2:
+                rectangle.move(direction);
+                break;
+            case 3:
+                rectangle.move(direction);
+                break; 
+            default:
+                break;           
+        }
+        
+        rectangle.createRect(window.getRenderer(),50,50);
+        collision(rectangle.getX());
+                
+            
+        
+        window.update();
+        
         // Get the next event
         SDL_Event event;
         if (SDL_PollEvent(&event))
@@ -74,6 +87,7 @@ int main(void){
             break;
             }
         }
+        SDL_Delay(20);
     }  
     
     return 0;

@@ -32,7 +32,6 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 void Game::update()
 {
-        
         SDL_RenderPresent(renderer);
 }
 
