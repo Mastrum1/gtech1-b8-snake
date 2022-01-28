@@ -18,7 +18,6 @@ void Rect::createRect(SDL_Renderer* renderer,int width,int height)
 void Rect::move(int x, int y)
 {
     xpos += x;
-    std::cout << ypos << std::endl;
     ypos += y;
 }
 

@@ -13,6 +13,8 @@ class Rect{
         void createRect(SDL_Renderer* renderer, int width, int height);
 
         void move(int x, int y);
+        int getX(){return xpos;};
+        int getY(){return ypos;};
  
             
 
