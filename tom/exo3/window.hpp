@@ -1,5 +1,6 @@
-#ifndef window_hpp
-#define window_hpp
+
+
+#pragma once
 
 #include <stdio.h>
 #include <iostream>
@@ -30,4 +31,3 @@ class Game{
 
 };
 
-#endif

@@ -1,5 +1,4 @@
-#ifndef rect_hpp
-#define rect_hpp
+#pragma once
 
 
 #include <stdio.h>
@@ -12,7 +11,7 @@ class Rect{
         ~Rect();
         void createRect(SDL_Renderer* renderer, int width, int height);
 
-        void move(int x, int y);
+        void move(int dir);
         int getX(){return xpos;};
         int getY(){return ypos;};
  
@@ -21,10 +20,9 @@ class Rect{
     private:
     int xpos = 400;
     int ypos = 300;
+    int pas = 10;
     SDL_Rect rectangle;
     
 
 };
 
-
-#endif 

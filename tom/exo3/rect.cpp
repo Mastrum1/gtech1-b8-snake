@@ -15,10 +15,26 @@ void Rect::createRect(SDL_Renderer* renderer,int width,int height)
     SDL_RenderDrawRect(renderer, &rectangle);
 }
 
-void Rect::move(int x, int y)
+void Rect::move(int dir)
 {
-    xpos += x;
-    ypos += y;
+
+    switch (dir){
+        case 0 :
+            ypos -= pas;
+            break;
+        case 1 :
+            ypos += pas;
+            break;
+        case 2 :
+            xpos += pas;
+            break;
+        case 3 :
+            xpos -= pas;
+            break;
+        default:
+            break;
+    }
+
 }
 
 

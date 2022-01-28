@@ -55,26 +55,26 @@ int main(void){
         SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
         switch (direction){
             case 0:
-                rectangle.move(0,-10);
+                rectangle.move(direction);
                 break;
             case 1:
-                rectangle.move(0,10);
+                rectangle.move(direction);
                 break;
             case 2:
-                rectangle.move(10,0);
+                rectangle.move(direction);
                 break;
             case 3:
-                rectangle.move(-10,0);
+                rectangle.move(direction);
                 break; 
             default:
                 break;           
         }
-        SDL_Delay(20);
+        
         rectangle.createRect(window.getRenderer(),50,50);
         collision(rectangle.getX());
                 
             
-   
+        
         window.update();
         
         // Get the next event
@@ -87,6 +87,7 @@ int main(void){
             break;
             }
         }
+        SDL_Delay(20);
     }  
     
     return 0;
