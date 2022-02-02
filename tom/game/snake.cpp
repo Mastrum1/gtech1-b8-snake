@@ -1,13 +1,13 @@
 #include <iostream>
 #include "snake.hpp"
-#define PAS 10
+
 
 
 Snake::Snake(int length, int startDirection)
 {   
     std::cout << "construction" << std::endl;
-    int x = 300;
-    int y = 300;
+    int x = PAS*10;
+    int y = PAS*10;
     for(int i=0; i < length; i++)
     {
         std::cout << "aller" << std::endl;
@@ -162,7 +162,6 @@ void Snake::growBack()
     }
 
     Segment *newSegment  = new Segment(xPos, yPos, loop->getDir());
-
     newSegment->setY(yPos);
     newSegment->setDir(head->getDir());
     newSegment->next = head;
@@ -199,7 +198,7 @@ void Snake::delBack()
 
 void Snake::print(SDL_Renderer* renderer)
 {
-    SDL_SetRenderDrawColor(renderer,255,255,255,SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(renderer,23,73,194,SDL_ALPHA_OPAQUE);
     Segment *loop = head;
     if (head == NULL)
     return;
@@ -212,11 +211,23 @@ void Snake::print(SDL_Renderer* renderer)
         
         SDL_Rect rectangle;
         rectangle = {loop->getX(),loop->getY(),PAS,PAS};
+        SDL_RenderFillRect(renderer,&rectangle);
         SDL_RenderDrawRect(renderer, &rectangle);
         loop = loop->next;  
         
     }
     
+}
+
+bool Snake::collisionMur()
+{
+    if (head->getX() > (SIZE-1)*PAS || head->getX() < 0 || head->getY() > (SIZE-1)*PAS || head->getY() < 0)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 

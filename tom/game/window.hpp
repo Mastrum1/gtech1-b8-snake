@@ -13,7 +13,7 @@ class Game{
     public:
         Game();
         ~Game();
-        int init(const char* title, int xpos, int ypos, int width, int height);
+        int init(const char* title, int xpos, int ypos, int width, int height, bool a);
         void render();
         void update();
         void clean();
