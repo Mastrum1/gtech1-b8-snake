@@ -30,7 +30,7 @@ int main(){
     
 
     int frame_rate_ms = 60;
-    int snake_speed_fpc = 1;
+
     int frame_delay,snake_status;
     Uint32 frame_start;
 
@@ -78,7 +78,6 @@ int main(){
         SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
         playground->create(window.getRenderer());
         snake->print(window.getRenderer());
-        
         window.update();;
             
 

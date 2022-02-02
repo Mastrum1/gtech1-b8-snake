@@ -4,7 +4,7 @@
 Segment::Segment(int x, int y, int dir)
 {
     this->x =x;
-    this->y =x;
+    this->y =y;
     this->dir =dir;
     this->next = NULL;
 

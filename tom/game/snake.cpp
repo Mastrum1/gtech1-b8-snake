@@ -6,8 +6,8 @@
 Snake::Snake(int length, int startDirection)
 {   
     std::cout << "construction" << std::endl;
-    int x = PAS*10;
-    int y = PAS*10;
+    int x = PAS*(SIZE/2);
+    int y = PAS*(SIZE/2);
     for(int i=0; i < length; i++)
     {
         std::cout << "aller" << std::endl;
@@ -164,7 +164,6 @@ void Snake::growBack()
     Segment *newSegment  = new Segment(xPos, yPos, loop->getDir());
     newSegment->setY(yPos);
     newSegment->setDir(head->getDir());
-    newSegment->next = head;
     loop->next = newSegment;
 
 
@@ -195,10 +194,16 @@ void Snake::delBack()
 }
 
 
+int R = 255;
+int G = 0;
+int B = 0;
 
 void Snake::print(SDL_Renderer* renderer)
 {
-    SDL_SetRenderDrawColor(renderer,23,73,194,SDL_ALPHA_OPAQUE);
+
+    
+    
+    
     Segment *loop = head;
     if (head == NULL)
     return;
@@ -207,11 +212,35 @@ void Snake::print(SDL_Renderer* renderer)
     std::cout << head->getY() << std::endl;
 
     while (loop != NULL)
-    {
-        
+    {   
+
+
+        if (R == 255 && G < 255){
+            G+=3;
+        }
+        else if (R > 0 && G == 255){
+            R-=3;
+        }
+        else if (G == 255 && B < 255){
+            B+=3;
+        }
+        //RGB Mode
+        else if (G > 0 && B == 255){
+            G-=3;
+        }
+        else if (B == 255 && R < 255){
+            R+=3;
+        }
+        else if (R == 255 && B > 0){
+            R+=3;
+        }
+            
+
+
+        SDL_SetRenderDrawColor(renderer,R,G,B,SDL_ALPHA_OPAQUE);
         SDL_Rect rectangle;
         rectangle = {loop->getX(),loop->getY(),PAS,PAS};
-        SDL_RenderFillRect(renderer,&rectangle);
+        SDL_RenderFillRect(renderer, &rectangle);
         SDL_RenderDrawRect(renderer, &rectangle);
         loop = loop->next;  
         
