@@ -27,16 +27,41 @@
 
 Game window;
 int game = true;
+int rgb = true;
 
 
+int direction(int direction)
+{
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+    if (state[SDL_SCANCODE_W] && direction != DOWN) 
+    {
+        direction = UP;
 
+    }
+    else if (state[SDL_SCANCODE_S] && direction != UP) 
+    {
+        direction = DOWN;
+
+    }
+    else if (state[SDL_SCANCODE_D] && direction != LEFT) 
+    {
+        direction = RIGHT;
+
+    }
+    else if (state[SDL_SCANCODE_A] && direction != RIGHT) 
+    {
+        direction = LEFT;
+
+    }
+    return direction;
+}
 
 
 int main(){
     
-
+    int dir = UP;
     int frame_rate_ms = 60;
-
+    int timer = 0;
     int frame_delay,snake_status;
     Uint32 frame_start;
 
@@ -61,32 +86,30 @@ int main(){
             }
         }
 
+        
+        dir = direction(dir);
+        snake->turnSnake(dir);
+
         const Uint8 *state = SDL_GetKeyboardState(NULL);
-        if (state[SDL_SCANCODE_W]) 
-        {
-            snake->turnSnake(UP);
-        }
-        if (state[SDL_SCANCODE_S]) 
-        {
-            snake->turnSnake(DOWN);
-        }
-        if (state[SDL_SCANCODE_D]) 
-        {
-            snake->turnSnake(RIGHT);
-        }
-        if (state[SDL_SCANCODE_A]) 
-        {
-            snake->turnSnake(LEFT);
-        }
         if (state[SDL_SCANCODE_C]) 
         {
             snake->growBack();
         }    
+
+      /*  if (rgbtrigger == true)
+        {
+            timer = 100;
+            rgbtrigger = false;
+            
+        }
+        if (timer > 0){
+
+        }*/
         SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
         SDL_RenderClear(window.getRenderer());
         SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
         playground->create(window.getRenderer());
-        snake->print(window.getRenderer(),false);
+        snake->print(window.getRenderer(),rgb);
         window.update();;
             
 

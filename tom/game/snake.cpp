@@ -43,27 +43,7 @@ void Snake::move()
 void Snake::turnSnake(int dir)
 {
 
-    switch (dir)
-    {
-    case UP:
-        if (head->getDir() != DOWN)
-            head->setDir(dir);
-        break;
-    case DOWN:
-        if (head->getDir() != UP)
-            head->setDir(dir);
-        break;
-    case RIGHT:
-        if (head->getDir() != LEFT)
-            head->setDir(dir);
-        break;
-    case LEFT:
-        if (head->getDir() != RIGHT)
-            head->setDir(dir);
-        break;
-    default:
-        break;
-    }
+    head->setDir(dir);
 }
 void Snake::grow(int x, int y, int dir)
 {
@@ -216,7 +196,7 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
     {   
 
         if (rgb == true){
-            if (R == 255 && G < 255){
+            if (R == 255 && G < 255 && B == 0){
                 G+=3;
             }
             else if (R > 0 && G == 255){
@@ -232,8 +212,8 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
             else if (B == 255 && R < 255){
                 R+=3;
             }
-            else if (R == 255 && B > 0){
-                R+=3;
+            else if (B > 0 && R == 255){
+                B-=3;
             }
         }
 
