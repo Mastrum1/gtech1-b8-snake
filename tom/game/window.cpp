@@ -27,7 +27,6 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height, boo
                 return EXIT_FAILURE;
             }
        return isRunning = true;
-       
 }
 
 void Game::update()
@@ -38,17 +37,8 @@ void Game::update()
 
 void Game::clean()
 {
-    
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     std::cout << "End" << std::endl;
     SDL_Quit();
-}
-
-SDL_Renderer* Game::getRenderer()
-{return renderer;}
-
-bool Game::running()
-{
-    return isRunning;
 }
