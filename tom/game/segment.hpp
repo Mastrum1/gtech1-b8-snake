@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-     
 class Segment {
 public:
   Segment* next;

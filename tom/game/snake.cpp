@@ -2,7 +2,6 @@
 #include "snake.hpp"
 
 
-
 Snake::Snake(int length, int startDirection)
 {   
     std::cout << "construction" << std::endl;
@@ -46,20 +45,20 @@ void Snake::turnSnake(int dir)
 
     switch (dir)
     {
-    case 0:
-        if (head->getDir() != 1)
+    case UP:
+        if (head->getDir() != DOWN)
             head->setDir(dir);
         break;
-    case 1:
-        if (head->getDir() != 0)
+    case DOWN:
+        if (head->getDir() != UP)
             head->setDir(dir);
         break;
-    case 2:
-        if (head->getDir() != 3)
+    case RIGHT:
+        if (head->getDir() != LEFT)
             head->setDir(dir);
         break;
-    case 3:
-        if (head->getDir() != 2)
+    case LEFT:
+        if (head->getDir() != RIGHT)
             head->setDir(dir);
         break;
     default:
@@ -106,16 +105,16 @@ void Snake::growAtHead()
 
     switch (head->getDir())
     {
-    case 0:
+    case UP:
         yPos -= PAS;
         break;
-    case 1:
+    case DOWN:
         yPos += PAS;
         break;
-    case 2:
+    case RIGHT:
         xPos += PAS;
         break;
-    case 3:
+    case LEFT:
         xPos -= PAS;
         break;
     default:
@@ -145,16 +144,16 @@ void Snake::growBack()
 
     switch (loop->getDir())
     {
-    case 0:
+    case UP:
         yPos += PAS;
         break;
-    case 1:
+    case DOWN:
         yPos -= PAS;
         break;
-    case 2:
+    case RIGHT:
         xPos -= PAS;
         break;
-    case 3:
+    case LEFT:
         xPos += PAS;
         break;
     default:
@@ -198,7 +197,8 @@ int R = 255;
 int G = 0;
 int B = 0;
 
-void Snake::print(SDL_Renderer* renderer)
+
+void Snake::print(SDL_Renderer* renderer,bool rgb)
 {
 
     
@@ -207,6 +207,7 @@ void Snake::print(SDL_Renderer* renderer)
     Segment *loop = head;
     if (head == NULL)
     return;
+
     std::cout << head->getDir() << std::endl;
     std::cout << head->getX() << std::endl;
     std::cout << head->getY() << std::endl;
@@ -214,27 +215,27 @@ void Snake::print(SDL_Renderer* renderer)
     while (loop != NULL)
     {   
 
-
-        if (R == 255 && G < 255){
-            G+=3;
+        if (rgb == true){
+            if (R == 255 && G < 255){
+                G+=3;
+            }
+            else if (R > 0 && G == 255){
+                R-=3;
+            }
+            else if (G == 255 && B < 255){
+                B+=3;
+            }
+            //RGB Mode
+            else if (G > 0 && B == 255){
+                G-=3;
+            }
+            else if (B == 255 && R < 255){
+                R+=3;
+            }
+            else if (R == 255 && B > 0){
+                R+=3;
+            }
         }
-        else if (R > 0 && G == 255){
-            R-=3;
-        }
-        else if (G == 255 && B < 255){
-            B+=3;
-        }
-        //RGB Mode
-        else if (G > 0 && B == 255){
-            G-=3;
-        }
-        else if (B == 255 && R < 255){
-            R+=3;
-        }
-        else if (R == 255 && B > 0){
-            R+=3;
-        }
-            
 
 
         SDL_SetRenderDrawColor(renderer,R,G,B,SDL_ALPHA_OPAQUE);
@@ -257,6 +258,25 @@ bool Snake::collisionMur()
     else{
         return false;
     }
+}
+
+bool Snake::collisionSnake()
+{
+    bool hit = false;
+    Segment* loop = head->next;
+
+    while (loop != NULL)
+    {
+
+        if (head->getX() == loop->getX() && head->getY() == loop->getY())
+        {
+            hit = true;
+            break;
+
+        }
+        loop = loop->next;
+    }
+    return hit;
 }
 
 
