@@ -62,7 +62,6 @@ void Snake::grow(int x, int y, int dir)
         return;
     }
  
-
     newSegment->setX(xPos);
     newSegment->setY(yPos);
     newSegment->setDir(dir);
@@ -100,7 +99,6 @@ void Snake::growAtHead()
     default:
         break;
     }
-
 
     Segment *newSegment = new Segment(xPos, yPos, dir);
     newSegment->setX(xPos);
@@ -144,11 +142,7 @@ void Snake::growBack()
     newSegment->setY(yPos);
     newSegment->setDir(head->getDir());
     loop->next = newSegment;
-
-
-
 }
-
 
 void Snake::delBack()
 {
@@ -168,22 +162,14 @@ void Snake::delBack()
         loop->next = NULL;
         delete last;
     }
-
-
 }
-
 
 int R = 255;
 int G = 0;
 int B = 0;
 
-
 void Snake::print(SDL_Renderer* renderer,bool rgb)
 {
-
-    
-    
-    
     Segment *loop = head;
     if (head == NULL)
     return;
@@ -194,7 +180,6 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
 
     while (loop != NULL)
     {   
-
         if (rgb == true){
             if (R == 255 && G < 255 && B == 0){
                 G+=3;
@@ -217,7 +202,6 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
             }
         }
 
-
         SDL_SetRenderDrawColor(renderer,R,G,B,SDL_ALPHA_OPAQUE);
         SDL_Rect rectangle;
         rectangle = {loop->getX(),loop->getY(),PAS,PAS};
@@ -225,8 +209,7 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
         SDL_RenderDrawRect(renderer, &rectangle);
         loop = loop->next;  
         
-    }
-    
+    }  
 }
 
 bool Snake::collisionMur()

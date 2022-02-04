@@ -4,6 +4,7 @@
 #define DOWN 1
 #define RIGHT 2
 #define LEFT 3
+#define FRUIT_NUMBER 3
 
 
 #include "window.hpp"
@@ -16,14 +17,10 @@
 #include "playground.hpp"
 
 
-
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-
-
-
 
 Game window;
 int game = true;
