@@ -2,7 +2,8 @@
 
 
 Playground::Playground()
-{}
+{
+}
 
 Playground::~Playground()
 {}
@@ -15,7 +16,6 @@ void Playground::create(SDL_Renderer* renderer)
         {
             SDL_Rect square;
             square = {PAS*l,PAS*i,PAS,PAS};
-
             switch(i%2)
             {
                 case 0:
@@ -31,7 +31,6 @@ void Playground::create(SDL_Renderer* renderer)
                 case 1:
                     if (l%2 == 0)
                     {
-                        
                         SDL_SetRenderDrawColor(renderer,28,168,28,SDL_ALPHA_OPAQUE);
                     }
                     else
@@ -43,10 +42,38 @@ void Playground::create(SDL_Renderer* renderer)
                     break;
 
             }
-
             SDL_RenderFillRect(renderer,&square);
             SDL_RenderDrawRect(renderer, &square);
         }
     }
 }
 
+
+void Playground::setDisplayState(bool state)
+{
+    this->fruitOnDisplay = state;
+}
+void Playground::displayFruit(SDL_Renderer* renderer,int x, int y, int form)
+{
+    SDL_SetRenderDrawColor(renderer,129,23,23,SDL_ALPHA_OPAQUE);
+    SDL_Rect apple;
+    apple = {x,y ,PAS,PAS};
+    SDL_RenderFillRect(renderer, &apple);
+    SDL_RenderDrawRect(renderer, &apple);
+}
+
+bool Playground::getFruitDisplayState()
+{
+    return fruitOnDisplay;
+}
+
+void Playground::collisionFruit(Fruit* fruit, Snake* snake)
+
+{
+    if (fruit->getX() == snake->getHead().getX() && fruit->getY() == snake->getHead().getY())
+    {
+        snake->growBack();
+        setDisplayState(false);
+        fruit->eaten();   
+    }
+}

@@ -16,6 +16,7 @@ public:
   
   bool collisionMur(); //function that'll check if i hit a wall or no ?
   bool collisionSnake(); //function that'll check if I hit my body or no ?
+  
 
 private:
   int dir; 

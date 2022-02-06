@@ -174,13 +174,14 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
     if (head == NULL)
     return;
 
-    std::cout << head->getDir() << std::endl;
+    /*std::cout << head->getDir() << std::endl;
     std::cout << head->getX() << std::endl;
-    std::cout << head->getY() << std::endl;
+    std::cout << head->getY() << std::endl;*/
 
     while (loop != NULL)
     {   
-        if (rgb == true){
+        if (rgb == true)
+        {
             if (R == 255 && G < 255 && B == 0){
                 G+=3;
             }
@@ -200,6 +201,12 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
             else if (B > 0 && R == 255){
                 B-=3;
             }
+        }
+        else
+        {
+            R = 255;
+            G = 0;
+            B = 0;
         }
 
         SDL_SetRenderDrawColor(renderer,R,G,B,SDL_ALPHA_OPAQUE);

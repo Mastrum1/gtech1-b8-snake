@@ -1,17 +1,12 @@
-#include <iostream>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
 #include "fruit.hpp"
-#include "main.cpp"
 
-Fruit::Fruit(int fruitX,int fruitY,char form)
+Fruit::Fruit(int fruitX,int fruitY,int formNb)
 {
     srand(time(NULL));
-    this->fruitX = (rand()%SIZE)*SIZE;
-    this->fruitY = (rand()%SIZE)*SIZE;
-    this->formNb = rand()%FRUIT_NUMBER;
+    this->fruitX = (rand() % SIZE) * PAS;
+    this->fruitY = (rand() % SIZE) * PAS;
+    this->formNb = 1;
+    std::cout << this->fruitX << std::endl;
 }
 
 Fruit::~Fruit(){}
@@ -22,27 +17,16 @@ int Fruit::getX()
 int Fruit::getY()
 {return fruitY;}
 
-char Fruit::getForm()
-{return form;}
+int Fruit::getForm()
+{return formNb;}
 
-void Fruit::setX(int x)
-{this->fruitX = x*SIZE;}
 
-void Fruit::setY(int y)
-{this->fruitY = y*SIZE;}
-
-void Fruit::setForm(char formnb)
-{this->formNb = formNb;}
-
-int R = 0;
-int G = 0;
-int B = 0;
-
-void Fruit::print(SDL_Renderer* renderer,bool rgb)
+void Fruit::eaten()
 {
-    SDL_SetRenderDrawColor(renderer,R,G,B,SDL_ALPHA_OPAQUE);
-    SDL_Rect rectangle;
-    rectangle = {this->getX(),this->getY(),PAS,PAS};
-    SDL_RenderFillRect(renderer, &rectangle);
-    SDL_RenderDrawRect(renderer, &rectangle);
+    this->fruitX = (rand() % SIZE) * PAS;
+    this->fruitY = (rand() % SIZE) * PAS;
+    this->formNb = 1;
 }
+
+
+
