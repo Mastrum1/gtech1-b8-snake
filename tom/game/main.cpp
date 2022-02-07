@@ -60,6 +60,7 @@ int main(){
     int dir = UP;
     int frame_rate_ms = 90;
     int timer = 0;
+    int fruitTimer = 0;
     int frame_delay,snake_status;
     bool gameEnd = false;
     Uint32 frame_start;
@@ -100,7 +101,7 @@ int main(){
 
         if (snake->getGamemode() == true && timer == 0)
         {
-            timer = 60; 
+            timer = 90; 
             std::cout<<  "activated" <<std::endl;
         }
         if( timer > 1)
@@ -122,12 +123,38 @@ int main(){
         playground->collisionFruit(fruit, snake);
         playground->create(window.getRenderer());
         playground->displayFruit(window.getRenderer(), fruit->getX(), fruit->getY(), fruit->getForm());
+
+        if ((fruit->getForm() == 1 || fruit->getForm() == 2) && fruitTimer == 0)
+        {
+
+            fruitTimer = 20; 
+            std::cout<<  fruitTimer <<std::endl;
+        }
+        if( fruitTimer > 1)
+        {   
+            std::cout<<  fruitTimer <<std::endl;
+            fruitTimer-=1;
+        }
+        else if (fruitTimer == 1)
+        {
+            std::cout<<  "new fruti" <<std::endl;
+            fruit->eaten(snake);
+            fruitTimer = 0;
+        }
+        
+
+
         snake->print(window.getRenderer(),rgb);
         window.update();;
 
         if (snake->getGamemode() != true)
         {
             gameEnd = snake->collisionSnake();
+            frame_rate_ms = 90;
+        }
+        else
+        {
+            frame_rate_ms = 45;
         }
         
         

@@ -5,8 +5,8 @@ Fruit::Fruit(int fruitX,int fruitY,int formNb, Snake* snake)
 {
     srand(time(NULL));
     
-    this->fruitX = (rand() % SIZE) * PAS;
-    this->fruitY = (rand() % SIZE) * PAS;
+    this->fruitX = (rand() % SIZE);
+    this->fruitY = (rand() % SIZE);
     this->formNb = 0;
     std::cout << this->fruitX << std::endl;
 }
@@ -26,7 +26,7 @@ int Fruit::getForm()
 void Fruit::eaten(Snake * snake)
 {  
     int i = 0;
-    int dropRate[9];
+    int dropRate[8];
     for(i;i<6;i++){
         dropRate[i]=0;
     }
@@ -34,8 +34,10 @@ void Fruit::eaten(Snake * snake)
         dropRate[i]=2;
     }
     dropRate[9] = 1;
-    this->fruitX = (rand() % SIZE) * PAS;
-    this->fruitY = (rand() % SIZE) * PAS;
+
+    
+    this->fruitX = (rand() % SIZE);
+    this->fruitY = (rand() % SIZE);
     this->formNb = dropRate[(rand()% 9)];
 
 }
