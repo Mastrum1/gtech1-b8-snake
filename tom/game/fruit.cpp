@@ -22,10 +22,19 @@ int Fruit::getForm()
 
 
 void Fruit::eaten()
-{
+{  
+    int i = 0;
+    int dropRate[9];
+    for(i;i<6;i++){
+        dropRate[i]=0;
+    }
+    for(i;i<8;i++){
+        dropRate[i]=2;
+    }
+    dropRate[9] = 1;
     this->fruitX = (rand() % SIZE) * PAS;
     this->fruitY = (rand() % SIZE) * PAS;
-    this->formNb = 1;
+    this->formNb = dropRate[(rand()% 9)];
 }
 
 

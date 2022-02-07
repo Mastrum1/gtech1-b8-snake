@@ -68,7 +68,7 @@ int main(){
     SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
 
     Snake *snake = new Snake(3,RIGHT);
-    Fruit * fruit = new Fruit(10,10,0);
+    Fruit *fruit = new Fruit(10,10,0);
     Playground *playground = new Playground();
     //std::cout << "Bein" << std::endl;
 
