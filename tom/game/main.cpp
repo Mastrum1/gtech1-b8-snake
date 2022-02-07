@@ -58,9 +58,10 @@ int direction(int direction)
 int main(){
     
     int dir = UP;
-    int frame_rate_ms = 60;
+    int frame_rate_ms = 90;
     int timer = 0;
     int frame_delay,snake_status;
+    bool gameEnd = false;
     Uint32 frame_start;
     Uint32 iter;
 
@@ -68,7 +69,7 @@ int main(){
     SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
 
     Snake *snake = new Snake(3,RIGHT);
-    Fruit *fruit = new Fruit(10,10,0);
+    Fruit * fruit = new Fruit(0,0,0,snake);
     Playground *playground = new Playground();
     //std::cout << "Bein" << std::endl;
 
@@ -91,27 +92,26 @@ int main(){
         {
             snake->growBack();
         }    
-        if (state[SDL_SCANCODE_P]) 
+
+        if (state[SDL_SCANCODE_G]) 
         {
-            rgbtrigger = true;
-        }   
-        if (rgbtrigger == true)
-        {
-            timer = 40; 
-            rgb = true;
-            rgbtrigger == false;
+            snake->setGamemode(true);
         }
-        if( timer >  0)
+
+        if (snake->getGamemode() == true && timer == 0)
+        {
+            timer = 60; 
+            std::cout<<  "activated" <<std::endl;
+        }
+        if( timer > 1)
         {   
-            rgbtrigger = false;
-            //std::cout << "Rgb activated" << std::endl;
-            //std::cout << timer << std::endl;
             timer-=1;
         }
-        else
+        else if (timer == 1)
         {
-            //std::cout << "Rgb deactivated" << std::endl;
-            rgb = false;
+            std::cout<<  "deactivated" <<std::endl;
+            snake->setGamemode(false);
+            timer = 0;
         }
 
 
@@ -124,7 +124,13 @@ int main(){
         playground->displayFruit(window.getRenderer(), fruit->getX(), fruit->getY(), fruit->getForm());
         snake->print(window.getRenderer(),rgb);
         window.update();;
-            
+
+        if (snake->getGamemode() != true)
+        {
+            gameEnd = snake->collisionSnake();
+        }
+        
+        
 
         frame_delay = frame_rate_ms - (SDL_GetTicks() - frame_start);
         if (frame_delay > 0)
@@ -137,7 +143,7 @@ int main(){
         // Get the next event
 
         iter++;
-    }while (snake->collisionMur() == false && snake->collisionSnake() == false);
+    }while (snake->collisionMur() == false && gameEnd == false);
     
     return 0;
 }

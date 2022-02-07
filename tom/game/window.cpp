@@ -16,12 +16,12 @@ int Game::init(const char* title, int xpos, int ypos, int width, int height, boo
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         SDL_SetRenderDrawColor(renderer,0,0,0,SDL_ALPHA_OPAQUE);
        
-        if(window == NULL)//gestion des erreurs
+        if(window == NULL)//error ?
             {
                 std::cout << "Erreur" << std::endl;
                 return EXIT_FAILURE;
             }
-        if(renderer == NULL)//gestion des erreurs
+        if(renderer == NULL)//error ?
             {
                 std::cout << "Erreur" << std::endl;
                 return EXIT_FAILURE;

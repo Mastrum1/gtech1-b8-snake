@@ -1,11 +1,13 @@
 #include "fruit.hpp"
+#include "snake.hpp"
 
-Fruit::Fruit(int fruitX,int fruitY,int formNb)
+Fruit::Fruit(int fruitX,int fruitY,int formNb, Snake* snake)
 {
     srand(time(NULL));
+    
     this->fruitX = (rand() % SIZE) * PAS;
     this->fruitY = (rand() % SIZE) * PAS;
-    this->formNb = 1;
+    this->formNb = 0;
     std::cout << this->fruitX << std::endl;
 }
 
@@ -21,7 +23,7 @@ int Fruit::getForm()
 {return formNb;}
 
 
-void Fruit::eaten()
+void Fruit::eaten(Snake * snake)
 {  
     int i = 0;
     int dropRate[9];
@@ -35,7 +37,6 @@ void Fruit::eaten()
     this->fruitX = (rand() % SIZE) * PAS;
     this->fruitY = (rand() % SIZE) * PAS;
     this->formNb = dropRate[(rand()% 9)];
+
 }
-
-
 

@@ -112,19 +112,19 @@ void Playground::collisionFruit(Fruit* fruit, Snake* snake)
             case 0:
                 snake->growBack();
                 setDisplayState(false);
-                fruit->eaten();  
+                fruit->eaten(snake);  
                 break;
             case 1:
-                //setGameMode(true);
+                snake->setGamemode(true);
                 snake->growBack();
                 setDisplayState(false);
-                fruit->eaten(); 
+                fruit->eaten(snake); 
                 break;
             case 2: 
                 snake->delBack();
                 //rajouter -1 au score
                 setDisplayState(false);
-                fruit->eaten(); 
+                fruit->eaten(snake); 
                 break;
         }
     }
