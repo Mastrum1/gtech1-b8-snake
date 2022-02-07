@@ -39,4 +39,3 @@ void Fruit::eaten(Snake * snake)
     this->formNb = dropRate[(rand()% 9)];
 
 }
-
