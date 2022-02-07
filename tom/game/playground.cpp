@@ -55,6 +55,8 @@ void Playground::setDisplayState(bool state)
 }
 void Playground::displayFruit(SDL_Renderer* renderer,int x, int y, int form)
 {
+
+    
     SDL_SetRenderDrawColor(renderer,129,23,23,SDL_ALPHA_OPAQUE);
     SDL_Rect apple;
     apple = {x,y ,PAS,PAS};
@@ -72,8 +74,10 @@ void Playground::collisionFruit(Fruit* fruit, Snake* snake)
 {
     if (fruit->getX() == snake->getHead().getX() && fruit->getY() == snake->getHead().getY())
     {
-        snake->growBack();
+        snake->growBack(); // Si fruit normal
+        //snake->delBack(); //si fruit mechant 
+        //snake->activateGodMode(); //si fruit rgb
         setDisplayState(false);
-        fruit->eaten();   
+        fruit->eaten(snake);   
     }
 }

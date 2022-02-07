@@ -180,7 +180,7 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
 
     while (loop != NULL)
     {   
-        if (rgb == true)
+        if (godMode == true)
         {
             if (R == 255 && G < 255 && B == 0){
                 G+=3;
@@ -219,15 +219,56 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
     }  
 }
 
+void Snake::setGamemode(bool gamemode)
+{
+    this->godMode = gamemode;
+}
+bool Snake::getGamemode()
+{
+    return godMode;
+}
 bool Snake::collisionMur()
 {
     if (head->getX() > (SIZE-1)*PAS || head->getX() < 0 || head->getY() > (SIZE-1)*PAS || head->getY() < 0)
     {
-        return true;
+        if(godMode == true)
+        {
+            if(head->getX() > (SIZE-1)*PAS)
+            {
+                head->setX(0);
+                return false;
+            }
+            if(head->getX() < 0)
+            {
+                head->setX((SIZE-1)*PAS);
+                return false;
+            }
+            if(head->getY() > (SIZE-1)*PAS)
+            {
+                head->setY(0);
+                return false;
+            }
+            if(head->getY() < 0)
+            {
+                head->setY((SIZE-1)*PAS);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return true;
+        }
+   
     }
-    else{
+    else
+    {
         return false;
     }
+
 }
 
 bool Snake::collisionSnake()

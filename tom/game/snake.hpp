@@ -13,12 +13,15 @@ public:
   void grow(int x, int y, int dir); // function that'll take pos and dir for the init of the snake
   void growBack();  //function that'll grow at the tail
   void print(SDL_Renderer* renderer,bool rgb); //function that'll print the whole snake
-  
+  void setGamemode(bool gamemode); //function that'll set the gamemode
+
+  bool getGamemode(); //Function that'll return the gamemode
   bool collisionMur(); //function that'll check if i hit a wall or no ?
   bool collisionSnake(); //function that'll check if I hit my body or no ?
   
 
 private:
   int dir; 
+  bool godMode = false;
   Segment* head = NULL;
 };
