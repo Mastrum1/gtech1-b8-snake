@@ -5,8 +5,8 @@
 Snake::Snake(int length, int startDirection)
 {   
     std::cout << "construction" << std::endl;
-    int x = PAS*(SIZE/2);
-    int y = PAS*(SIZE/2);
+    int x = SIZE / 2;
+    int y = SIZE / 2;
     for(int i=0; i < length; i++)
     {
         std::cout << "aller" << std::endl;
@@ -14,16 +14,16 @@ Snake::Snake(int length, int startDirection)
         {
         case 0:
         case 1:
-            y += PAS;
+            y += 1;
             break;
         case 2:
         case 3:
-            x += PAS;
+            x += 1;
             break;
         default:
             break;
         }
-        grow(x,y,startDirection);
+        grow(x*PAS,y*PAS,startDirection);
     }
 
     std::cout << "mon snake est créé" << std::endl;
@@ -85,16 +85,16 @@ void Snake::growAtHead()
     switch (head->getDir())
     {
     case UP:
-        yPos -= PAS;
+        yPos -= 1;
         break;
     case DOWN:
-        yPos += PAS;
+        yPos += 1;
         break;
     case RIGHT:
-        xPos += PAS;
+        xPos += 1;
         break;
     case LEFT:
-        xPos -= PAS;
+        xPos -= 1;
         break;
     default:
         break;
@@ -123,23 +123,23 @@ void Snake::growBack()
     switch (loop->getDir())
     {
     case UP:
-        yPos += PAS;
+        yPos += 1;
         break;
     case DOWN:
-        yPos -= PAS;
+        yPos -= 1;
         break;
     case RIGHT:
-        xPos -= PAS;
+        xPos -= 1;
         break;
     case LEFT:
-        xPos += PAS;
+        xPos += 1;
         break;
     default:
         break;
     }
 
-    Segment *newSegment  = new Segment(xPos, yPos, loop->getDir());
-    newSegment->setY(yPos);
+    Segment *newSegment  = new Segment(xPos * PAS, yPos * PAS, loop->getDir());
+
     newSegment->setDir(head->getDir());
     loop->next = newSegment;
 }
