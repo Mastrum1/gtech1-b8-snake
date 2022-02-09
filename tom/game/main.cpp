@@ -1,3 +1,8 @@
+#include <SDL2/SDL.h>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
 #define SIZE 20
 #define PAS 35 //sizeof my snake and also the constant that i'll use to draw my board and define the size of my window
 #define UP 0
@@ -5,6 +10,7 @@
 #define RIGHT 2
 #define LEFT 3
 #define FRUIT_NUMBER 3
+#define SNAKE_START_LENTGH 3
 
 #include "window.hpp"
 #include "snake.hpp"
@@ -16,11 +22,6 @@
 #include "fruit.hpp"
 #include "playground.cpp"
 #include "playground.hpp"
-
-#include <SDL2/SDL.h>
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
 
 Game window;
 int game = true;
@@ -63,9 +64,10 @@ int main(){
     Uint32 iter;
 
     window.init("Snake",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,PAS*SIZE,PAS*SIZE,false);
+    
     SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
 
-    Snake *snake = new Snake(3,RIGHT);
+    Snake *snake = new Snake(SNAKE_START_LENTGH,RIGHT);
     Fruit * fruit = new Fruit(0,0,0,snake);
     Playground *playground = new Playground();
     //std::cout << "Bein" << std::endl;
@@ -136,8 +138,6 @@ int main(){
             fruitTimer = 0;
         }
         
-
-
         snake->print(window.getRenderer(),rgb);
         window.update();;
 
