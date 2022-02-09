@@ -93,7 +93,7 @@ void Playground::displayFruit(SDL_Renderer* renderer,int x, int y, int form)
             break;
     }
     SDL_Rect apple;
-    apple = {x,y ,PAS,PAS};
+    apple = {x*PAS,y *PAS ,PAS,PAS};
     SDL_RenderFillRect(renderer, &apple);
     SDL_RenderDrawRect(renderer, &apple);
 }

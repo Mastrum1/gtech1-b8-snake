@@ -5,8 +5,8 @@
 Snake::Snake(int length, int startDirection)
 {   
     std::cout << "construction" << std::endl;
-    int x = PAS*(SIZE/2);
-    int y = PAS*(SIZE/2);
+    int x = SIZE/2;
+    int y = SIZE/2;
     for(int i=0; i < length; i++)
     {
         std::cout << "aller" << std::endl;
@@ -14,11 +14,11 @@ Snake::Snake(int length, int startDirection)
         {
         case 0:
         case 1:
-            y += PAS;
+            y += 1;
             break;
         case 2:
         case 3:
-            x += PAS;
+            x += 1;
             break;
         default:
             break;
@@ -85,16 +85,16 @@ void Snake::growAtHead()
     switch (head->getDir())
     {
     case UP:
-        yPos -= PAS;
+        yPos -= 1;
         break;
     case DOWN:
-        yPos += PAS;
+        yPos += 1;
         break;
     case RIGHT:
-        xPos += PAS;
+        xPos += 1;
         break;
     case LEFT:
-        xPos -= PAS;
+        xPos -= 1;
         break;
     default:
         break;
@@ -123,16 +123,16 @@ void Snake::growBack()
     switch (loop->getDir())
     {
     case UP:
-        yPos += PAS;
+        yPos += 1;
         break;
     case DOWN:
-        yPos -= PAS;
+        yPos -= 1;
         break;
     case RIGHT:
-        xPos -= PAS;
+        xPos -= 1;
         break;
     case LEFT:
-        xPos += PAS;
+        xPos += 1;
         break;
     default:
         break;
@@ -211,7 +211,7 @@ void Snake::print(SDL_Renderer* renderer,bool rgb)
 
         SDL_SetRenderDrawColor(renderer,R,G,B,SDL_ALPHA_OPAQUE);
         SDL_Rect rectangle;
-        rectangle = {loop->getX(),loop->getY(),PAS,PAS};
+        rectangle = {loop->getX()*PAS,loop->getY()*PAS,PAS,PAS};
         SDL_RenderFillRect(renderer, &rectangle);
         SDL_RenderDrawRect(renderer, &rectangle);
         loop = loop->next;  
@@ -229,28 +229,28 @@ bool Snake::getGamemode()
 }
 bool Snake::collisionMur()
 {
-    if (head->getX() > (SIZE-1)*PAS || head->getX() < 0 || head->getY() > (SIZE-1)*PAS || head->getY() < 0)
+    if (head->getX() > (SIZE-1) || head->getX() < 0 || head->getY() > (SIZE-1) || head->getY() < 0)
     {
         if(godMode == true)
         {
-            if(head->getX() > (SIZE-1)*PAS)
+            if(head->getX() > (SIZE-1))
             {
                 head->setX(0);
                 return false;
             }
             if(head->getX() < 0)
             {
-                head->setX((SIZE-1)*PAS);
+                head->setX((SIZE-1));
                 return false;
             }
-            if(head->getY() > (SIZE-1)*PAS)
+            if(head->getY() > (SIZE-1))
             {
                 head->setY(0);
                 return false;
             }
             if(head->getY() < 0)
             {
-                head->setY((SIZE-1)*PAS);
+                head->setY((SIZE-1));
                 return false;
             }
             else
@@ -289,5 +289,4 @@ bool Snake::collisionSnake()
     }
     return hit;
 }
-
 
