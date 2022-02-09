@@ -18,6 +18,8 @@ public:
   bool getGamemode(); //Function that'll return the gamemode
   bool collisionMur(); //function that'll check if i hit a wall or no ?
   bool collisionSnake(); //function that'll check if I hit my body or no ?
+
+  int getLen(); // function that'll return the legth of the snake
   
 
 private:

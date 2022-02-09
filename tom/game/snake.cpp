@@ -290,3 +290,15 @@ bool Snake::collisionSnake()
     return hit;
 }
 
+int Snake::getLen()
+{
+    int counter = 0;
+    Segment* loop = head->next;
+
+    while (loop != NULL)
+    {
+        loop = loop->next;
+        counter++;
+    }
+    return counter;
+}

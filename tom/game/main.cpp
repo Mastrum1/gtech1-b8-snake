@@ -25,6 +25,8 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL2/SDL_ttf.h>
+
 
 Game window;
 int game = true;
