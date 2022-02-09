@@ -25,18 +25,7 @@ int Fruit::getForm()
 void Fruit::eaten(Snake * snake)
 {  
     int i = 0;
-    int dropRate[9];
-
-    dropRate[0] = 0;
-    dropRate[1] = 0;
-    dropRate[2] = 0;
-    dropRate[3] = 0;
-    dropRate[4] = 0;
-    dropRate[5] = 2;
-    dropRate[6] = 2;
-    dropRate[7] = 2;
-    dropRate[8] = 2;
-    dropRate[9] = 1;
+    int dropRate[10] = {0,0,0,0,0,2,2,2,2,1};
 
     this->fruitX = (rand() % SIZE);
     this->fruitY = (rand() % SIZE);

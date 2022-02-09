@@ -1,7 +1,9 @@
+
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL2/SDL_ttf.h>
 
 #define SIZE 20
 #define PAS 35 //sizeof my snake and also the constant that i'll use to draw my board and define the size of my window
@@ -50,6 +52,14 @@ int direction(int direction)
         direction = LEFT;
     }
     return direction;
+}
+
+void displayScore(SDL_Renderer * renderer)
+{
+    //code
+
+    // display (lenSnake() - const)
+    return;
 }
 
 int main(){
@@ -124,16 +134,15 @@ int main(){
         {
 
             fruitTimer = 20; 
-            std::cout<<  fruitTimer <<std::endl;
+            
         }
         if( fruitTimer > 1)
         {   
-            std::cout<<  fruitTimer <<std::endl;
             fruitTimer-=1;
         }
         else if (fruitTimer == 1)
         {
-            std::cout<<  "new fruti" <<std::endl;
+            
             fruit->eaten(snake);
             fruitTimer = 0;
         }
