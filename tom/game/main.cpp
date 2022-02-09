@@ -5,6 +5,7 @@
 #define RIGHT 2
 #define LEFT 3
 #define FRUIT_NUMBER 3
+#define SNAKE_START_LENGTH 3
 
 
 #include "window.hpp"
@@ -54,6 +55,13 @@ int direction(int direction)
     return direction;
 }
 
+void displayScore(SDL_Renderer * renderer)
+{
+    //code
+
+    // display (lenSnake() - const)
+    return;
+}
 
 int main(){
     
@@ -128,16 +136,15 @@ int main(){
         {
 
             fruitTimer = 20; 
-            std::cout<<  fruitTimer <<std::endl;
+            
         }
         if( fruitTimer > 1)
         {   
-            std::cout<<  fruitTimer <<std::endl;
             fruitTimer-=1;
         }
         else if (fruitTimer == 1)
         {
-            std::cout<<  "new fruti" <<std::endl;
+            
             fruit->eaten(snake);
             fruitTimer = 0;
         }
