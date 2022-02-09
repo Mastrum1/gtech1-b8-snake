@@ -1,14 +1,27 @@
 #include "fruit.hpp"
 #include "snake.hpp"
+#include "segment.hpp"
+	
+#include <SDL2/SDL_ttf.h>
 
 Fruit::Fruit(int fruitX,int fruitY,int formNb, Snake* snake)
 {
     srand(time(NULL));
-    
+    Segment loop = snake->getHead();
     this->fruitX = (rand() % SIZE);
     this->fruitY = (rand() % SIZE);
     this->formNb = 0;
-    std::cout << this->fruitX << std::endl;
+
+    while (loop.next == NULL)
+    {
+        if (loop.getX() == fruitX && loop.getY() == fruitY)
+        {
+            this->fruitX = (rand() % SIZE);
+            this->fruitY = (rand() % SIZE);
+        }
+    }
+    
+
 }
 
 Fruit::~Fruit(){}
@@ -26,9 +39,19 @@ void Fruit::eaten(Snake * snake)
 {  
     int i = 0;
     int dropRate[10] = {0,0,0,0,0,2,2,2,2,1};
-
+    
+    Segment loop = snake->getHead();
+    
     this->fruitX = (rand() % SIZE);
     this->fruitY = (rand() % SIZE);
-    this->formNb = dropRate[(rand()% 9)];
+    this->formNb = dropRate[(rand()% 10)];
 
+    while (loop.next == NULL)
+    {
+        if (loop.getX() == fruitX && loop.getY() == fruitY)
+        {
+            this->fruitX = (rand() % SIZE);
+            this->fruitY = (rand() % SIZE);
+        }
+    }
 }

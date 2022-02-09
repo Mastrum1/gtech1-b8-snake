@@ -25,6 +25,15 @@
 #include "playground.cpp"
 #include "playground.hpp"
 
+
+
+#include <SDL2/SDL.h>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL2/SDL_ttf.h>
+
+
 Game window;
 int game = true;
 int rgb = false;
