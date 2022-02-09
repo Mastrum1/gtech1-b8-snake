@@ -6,7 +6,6 @@
 #define LEFT 3
 #define FRUIT_NUMBER 3
 
-
 #include "window.hpp"
 #include "snake.hpp"
 #include "segment.hpp"
@@ -18,8 +17,6 @@
 #include "playground.cpp"
 #include "playground.hpp"
 
-
-
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <stdio.h>
@@ -30,7 +27,7 @@ int game = true;
 int rgb = false;
 int rgbtrigger = false;
 int timer = 0;
-
+int fruitTimer = 0;
 
 int direction(int direction)
 {
@@ -53,7 +50,6 @@ int direction(int direction)
     }
     return direction;
 }
-
 
 int main(){
     
@@ -114,8 +110,6 @@ int main(){
             timer = 0;
         }
 
-
-        
         SDL_SetRenderDrawColor(window.getRenderer(),0,0,0,SDL_ALPHA_OPAQUE);
         SDL_RenderClear(window.getRenderer());
         SDL_SetRenderDrawColor(window.getRenderer(),255,255,255,SDL_ALPHA_OPAQUE);
@@ -130,8 +124,6 @@ int main(){
             gameEnd = snake->collisionSnake();
         }
         
-        
-
         frame_delay = frame_rate_ms - (SDL_GetTicks() - frame_start);
         if (frame_delay > 0)
             SDL_Delay(frame_delay);
